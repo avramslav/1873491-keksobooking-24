@@ -1,4 +1,4 @@
-function getRandomInteger(beginRange, endRange) {
+const getRandomInteger = (beginRange, endRange) => {
   if (beginRange<0 && endRange<0) {
     return 'Неверные данные';
   }
@@ -18,7 +18,7 @@ function getRandomInteger(beginRange, endRange) {
   }
 }
 
-function getRandomArbitrary(beginRange, endRange, decimalPlaces) {
+const getRandomArbitrary = (beginRange, endRange, decimalPlaces) => {
   if (beginRange<0 && endRange<0){
     return 'Неверные данные';
   }
@@ -36,5 +36,5 @@ function getRandomArbitrary(beginRange, endRange, decimalPlaces) {
   return parseFloat(arbitrary.toFixed(decimalPlaces));
 }
 
-getRandomInteger(-6, -1);
+console.log(getRandomInteger(-6, 13));
 getRandomArbitrary(-1.3, 1.4, 3);
