@@ -36,14 +36,23 @@ const getRandomArbitrary = (beginRange, endRange, decimalPlaces) => {
   return parseFloat(arbitrary.toFixed(decimalPlaces));
 };
 
-const checkinHours= ['12:00', '13:00', '14:00'];
-const checkoutHours=['12:00', '13:00', '14:00'];
+const checkinOrOutHours= ['12:00', '13:00', '14:00'];
 const typeOfHousing = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const arrayFeatures=[ 'wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const arrayPhotos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 
+const getArrayNumbers = (length,min,max) =>{
+  const Numbers = [];
+  while(Numbers.length < length) {
+    const x = getRandomInteger(min,max);
+    if (!Numbers.includes(x)) {
+      Numbers.push(x);
+    }
+  }
+  return Numbers;
+};
 let arrayTemporaryDates = Array(10);
 for (let i = 0; i < arrayTemporaryDates.length; i++){
   arrayTemporaryDates[i] = {
@@ -63,32 +72,39 @@ for (let i = 0; i < arrayTemporaryDates.length; i++){
       checkout:'',
       features:[],
       description:'Удобный, чистый номер для отдыхающих',
-      photos:[] }      /*массив строк — массив случайной длины из значений*/,
-    location: {    // объект — местоположение в виде географических координат. Состоит из двух полей:
-      lat:0.0,    /*число с плавающей точкой — широта, случайное значение от 35.65000 до 35.70000*/
-      lng: 0.0,   /*число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000*/
-
+      photos:[] },
+    location: {
+      lat:0.0,
+      lng: 0.0,
     },
   };
 }
 
-
 const getGeneratedObjects = () => {
-  let avatarNumbers = [];
-  while(avatarNumbers.length < 10) {
-    const x = getRandomInteger(1,10);
-    if (!avatarNumbers.includes(x)) {
-      avatarNumbers.push(x);
-    }
-  }
+  let avatarNumbers = getArrayNumbers(10,1,10);
   avatarNumbers = avatarNumbers.map((addZero) => `img/avatars/user${  (`0${addZero}`).substr(-2,2)  }.png`);
-  console.log(avatarNumbers);
   arrayTemporaryDates = arrayTemporaryDates.map( (element,i) => {
     element.author.avatar = avatarNumbers[i];
-    console.log(element);
+    element.location.lat = getRandomArbitrary(35.65000, 35.70000, 5);
+    element.location.lng = getRandomArbitrary(139.70000, 139.80000, 5);
+    element.offer.address = `${element.location.lat.toString()  }, ${  element.location.lng.toString()}`;
+    element.offer.price = getRandomInteger(3000,5000);
+    element.offer.type = typeOfHousing[getRandomInteger(0,4)];
+    element.offer.rooms = getRandomInteger(1,4);
+    element.offer.guests = getRandomInteger(1,7);
+    element.offer.checkin = checkinOrOutHours[getRandomInteger(0,2)];
+    element.offer.checkout = element.offer.checkin;
+
+    const length = getRandomInteger(1,6);
+    let featuresNumbers = getArrayNumbers(length,0,5);
+    featuresNumbers = featuresNumbers.map((index) => arrayFeatures[index]);
+    element.offer.features = featuresNumbers;
+
+    let photosNumbers = getArrayNumbers(getRandomInteger(1,3),0,2);
+    photosNumbers = photosNumbers.map((index) => arrayPhotos[index]);
+    element.offer.photos = photosNumbers;
     return element;
   });
-  //arrayTemporaryDates = arrayTemporaryDates.map(object => object[location].lat = 3;
   return arrayTemporaryDates;
 };
 console.log(getGeneratedObjects());
