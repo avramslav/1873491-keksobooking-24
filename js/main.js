@@ -95,16 +95,17 @@ const getGeneratedObjects = () => {
     element.offer.checkin = checkinOrOutHours[getRandomInteger(0,2)];
     element.offer.checkout = checkinOrOutHours[getRandomInteger(0,2)];
 
-    const length = getRandomInteger(1,6);
-    let featuresNumbers = getArrayNumbers(length,0,5);
-    featuresNumbers = featuresNumbers.map((index) => arrayFeatures[index]);
-    element.offer.features = featuresNumbers;
-
-    let photosNumbers = getArrayNumbers(getRandomInteger(1,3),0,2);
-    photosNumbers = photosNumbers.map((index) => arrayPhotos[index]);
-    element.offer.photos = photosNumbers;
+    element.offer.features = (()=>{
+      const length = getRandomInteger(1,6);
+      let featuresNumbers = getArrayNumbers(length,0,5);
+      featuresNumbers = featuresNumbers.map((index) => arrayFeatures[index]);
+      return featuresNumbers;})();
+    element.offer.photos =(() =>{
+      let photosNumbers = getArrayNumbers(getRandomInteger(1,3),0,2);
+      photosNumbers = photosNumbers.map((index) => arrayPhotos[index]);
+      return photosNumbers;})();
     return element;
   });
   return arrayTemporaryDates;
 };
-//console.log(getGeneratedObjects());
+console.log(getGeneratedObjects());
