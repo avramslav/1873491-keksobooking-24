@@ -93,7 +93,7 @@ const getGeneratedObjects = () => {
     element.offer.rooms = getRandomInteger(1,4);
     element.offer.guests = getRandomInteger(1,7);
     element.offer.checkin = checkinOrOutHours[getRandomInteger(0,2)];
-    element.offer.checkout = element.offer.checkin;
+    element.offer.checkout = checkinOrOutHours[getRandomInteger(0,2)];
 
     const length = getRandomInteger(1,6);
     let featuresNumbers = getArrayNumbers(length,0,5);
@@ -107,4 +107,4 @@ const getGeneratedObjects = () => {
   });
   return arrayTemporaryDates;
 };
-console.log(getGeneratedObjects());
+//console.log(getGeneratedObjects());
