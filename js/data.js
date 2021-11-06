@@ -1,4 +1,4 @@
-import {getRandomInteger,getRandomArbitrary} from './util';
+import {getRandomInteger,getRandomArbitrary} from './util.js';
 
 const ARRAY_LENGTH = 10;
 const checkinOrOutHours= ['12:00', '13:00', '14:00'];

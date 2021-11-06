@@ -1,2 +1,2 @@
-import {getGeneratedObjects} from './data';
-console.log(getGeneratedObjects());
+import {getGeneratedObjects} from './data.js';
+//console.log(getGeneratedObjects());
