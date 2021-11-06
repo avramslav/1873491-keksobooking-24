@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git@github.com:htmlacademy-javascript/1873491-keksobooking-24.git"
   },
-  "bugs": {
+    "bugs": {
     "url": "https://github.com/htmlacademy-javascript/1873491-keksobooking-24/issues"
   },
   "devDependencies": {
