@@ -1,9 +1,9 @@
 import {getRandomInteger,getRandomArbitrary} from './util.js';
 
 const ARRAY_LENGTH = 10;
-const checkinOrOutHours= ['12:00', '13:00', '14:00'];
+const checkinOrOutHours = ['12:00', '13:00', '14:00'];
 const typeOfHousing = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
-const arrayFeatures=[ 'wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const arrayFeatures = [ 'wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const arrayPhotos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
@@ -47,12 +47,12 @@ for (let i = 0; i < arrayTemporaryDates.length; i++){
 
 const getGeneratedObjects = () => {
   let avatarNumbers = getArrayNumbers(10,1,10);
-  avatarNumbers = avatarNumbers.map((addZero) => `img/avatars/user${  (`0${addZero}`).substr(-2,2)  }.png`);
+  avatarNumbers = avatarNumbers.map((addZero) => `img/avatars/user${ (`0${addZero}`).substr(-2,2) }.png`);
   arrayTemporaryDates = arrayTemporaryDates.map( (element,i) => {
     element.author.avatar = avatarNumbers[i];
     element.location.lat = getRandomArbitrary(35.65000, 35.70000, 5);
     element.location.lng = getRandomArbitrary(139.70000, 139.80000, 5);
-    element.offer.address = `${element.location.lat.toString()  }, ${  element.location.lng.toString()}`;
+    element.offer.address = `${element.location.lat.toString() }, ${ element.location.lng.toString()}`;
     element.offer.price = getRandomInteger(3000,5000);
     element.offer.type = typeOfHousing[getRandomInteger(0,4)];
     element.offer.rooms = getRandomInteger(1,4);
@@ -65,7 +65,7 @@ const getGeneratedObjects = () => {
       let featuresNumbers = getArrayNumbers(length,0,5);
       featuresNumbers = featuresNumbers.map((index) => arrayFeatures[index]);
       return featuresNumbers;})();
-    element.offer.photos =(() =>{
+    element.offer.photos = (() =>{
       let photosNumbers = getArrayNumbers(getRandomInteger(1,3),0,2);
       photosNumbers = photosNumbers.map((index) => arrayPhotos[index]);
       return photosNumbers;})();
